@@ -1,0 +1,41 @@
+<h2>Reactive Login Form</h2>
+
+<div class="form-container">
+    <form [formGroup]="regForm" (ngSubmit)="submitForm()">
+        <div class="form-group">
+            <label for="email"><span class="error">*</span>Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter email" required formControlName="email" />
+            <span class="error" *ngIf="regForm.controls['email'].touched && regForm.controls['email'].invalid">
+                A valid Email is required.
+            </span>
+        </div>
+
+        <!-- Dynamic Form Controller goes here: -->
+        <div formArrayName="mobiles">
+            <div *ngFor="let mobileno of mobiles.controls; index as idx" class="form-group">
+                <label for="mobileno"><span class="error">*</span>Mobile</label>
+                <input type="text" name="mobileno" placeholder="Enter mobile number" required [formControlName]="idx" />
+                <!-- Show error only if the mobile input is touched and invalid -->
+                <!-- Show error messages based on validation -->
+                <span class="error" *ngIf="mobileno.touched && mobileno.invalid">
+                    A valid Mobile is required.
+                </span>
+                <span class="error" *ngIf="mobileno.errors?.['invalidMobile'] && mobileno.touched">
+                    Mobile must start with 6, 7, 8, or 9 and be exactly 10 digits.
+                </span>
+                <!-- Show delete button only for dynamically added controls -->
+                <button *ngIf="idx > 0" (click)="deletemobileidx(idx)" style="margin:5px">Delete</button>
+            </div>
+
+            <!-- Add button to add a new control dynamically -->
+            <button type="button" (click)="addmoreControlidx()" style="background-color: green;"
+                [disabled]="mobiles.invalid">Add another mobile</button>
+        </div>
+        <!-- Dynamic Form Controller goes here: -->
+
+        <div class="form-actions" style="margin-top: 20px;">
+            <button type="submit" [disabled]="regForm.invalid">Register</button>
+            <button type="reset" class="button2">Cancel</button>
+        </div>
+    </form>
+</div>

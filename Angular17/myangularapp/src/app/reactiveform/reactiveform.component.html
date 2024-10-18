@@ -1,0 +1,72 @@
+<h2>Reactive Registration Form</h2>
+<!-- using property binding to bind formGroup created in .ts eg: regForm ...it will hold all form data. since regForm is a formgroup availbale in .ts so no need to pass with event binding... -->
+<div class="form-container">
+    <form [formGroup]="regForm" (ngSubmit)="register()">
+        <div class="form-group">
+            <label for="firstName"><span class="error">*</span>First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter first name" formControlName='fname'
+                required />
+            <div *ngIf="regForm.controls['fname'].touched && regForm.controls['fname'].invalid" class="error">
+                <!-- different error message based on different validators -->
+                <span *ngIf="regForm.controls['fname'].hasError('required')">
+                    First Name is required!
+                </span>
+                <span *ngIf="regForm.controls['fname'].hasError('minlength')">
+                    First Name should be at least 5 characters.
+                </span>
+                <span *ngIf="regForm.controls['fname'].hasError('maxlength')">
+                    First Name should not exceed 20 characters.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName"><span class="error">*</span>Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required
+                formControlName='lname' />
+            <div *ngIf="regForm.controls['lname'].touched && regForm.controls['lname'].invalid" class="error">
+                <span *ngIf="regForm.controls['lname'].hasError('required')">
+                    Last Name is required!
+                </span>
+                <span *ngIf="regForm.controls['lname'].hasError('minlength')">
+                    Last Name should be at least 5 characters.
+                </span>
+                <span *ngIf="regForm.controls['lname'].hasError('maxlength')">
+                    Last Name should not exceed 20 characters.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email"><span class="error">*</span>Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter email" required formControlName='email' />
+            <span class="error" *ngIf="regForm.controls['email'].touched && regForm.controls['email'].invalid">A valid
+                Email is required.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="password"><span class="error">*</span>Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required
+                formControlName='password' />
+            <div class="error" *ngIf="regForm.controls['password'].touched && regForm.controls['password'].invalid">
+                <span *ngIf="regForm.controls['password'].hasError('required')">
+                    Password is required!
+                </span>
+                <span *ngIf="regForm.controls['password'].hasError('minlength')">
+                    Password should be at least 5 characters.
+                </span>
+                <span *ngIf="regForm.controls['password'].hasError('maxlength')">
+                    Password should not exceed 20 characters.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" [disabled]="regForm.invalid">Register</button>
+            <button type="reset" class="button2">Cancel</button>
+            <button (click)="resetFields()" class="button2">Reset</button>
+            <button (click)="updateFullForm()" class="button2">Update Full</button>
+            <button (click)="updatePartialForm()" class="button2" style="margin-top:5px">Update Partial</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+<h2>Reactive Login Form</h2>
+<!-- using property binding to bind formGroup created in .ts eg: regForm ...it will hold all form data. since regForm is a formgroup availbale in .ts so no need to pass with event binding... -->
+<div class="form-container">
+    <form [formGroup]="regForm" (ngSubmit)="login()">
+        <div class="form-group">
+            <label for="email"><span class="error">*</span>Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter email" required formControlName='email' />
+            <span class="error" *ngIf="regForm.controls['email'].touched && regForm.controls['email'].invalid">A valid
+                Email is required.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="password"><span class="error">*</span>Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required
+                formControlName='password' />
+            <span class="error"
+                *ngIf="regForm.controls['password'].touched && regForm.controls['password'].invalid">Password is
+                required.</span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" [disabled]="regForm.invalid">Register</button>
+            <button type="reset" class="button2">Cancel</button>
+        </div>
+    </form>
+</div>
