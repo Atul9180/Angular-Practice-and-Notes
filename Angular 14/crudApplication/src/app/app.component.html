@@ -19,12 +19,24 @@
 
     <!-- right sidebar area -->
     <mat-sidenav-content>
-        <mat-toolbar color="" style="background-color: rgba(191, 205, 218, 0.237);">
+        <mat-toolbar color="" class="navbar-container">
             <a routerLink="/home" class="brandName"><span>My Application</span></a>
-            <!-- sidebar toggle btn -->
-            <button mat-icon-button (click)="sidenav.toggle()" class="sidebar-toggle-btn">
-                <mat-icon>menu</mat-icon>
-            </button>
+            <!-- User Avatar next to the toggle button -->
+            <div class="toggleBtn-avatar-container">
+
+                <!-- conditional dynamic avatar fallback svg in case of avatar load fail -->
+                <img *ngIf="isImageLoaded; else fallbackIcon" src="path_to_your_avatar_image.jpg" alt="User Avatar"
+                    (load)="isImageLoaded = true" (error)=" isImageLoaded = false" class="user-image" />
+
+                <ng-template #fallbackIcon>
+                    <mat-icon class="user-avatar" aria-label="User Avatar">account_circle</mat-icon>
+                </ng-template>
+
+                <!-- Sidebar toggle btn -->
+                <button mat-icon-button (click)="sidenav.toggle()" class="sidebar-toggle-btn">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
         </mat-toolbar>
 
         <!-- right side body container for routes -->

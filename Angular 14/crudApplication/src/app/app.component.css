@@ -20,8 +20,39 @@
   margin: 0 8px 0 3px;
 }
 
+.navbar-container {
+  background-color: rgba(191, 205, 218, 0.237);
+  display: flex;
+  justify-content: space-between;
+}
+
+.toggleBtn-avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  background-color: red;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.user-avatar {
+  font-size: 26px;
+  color: #555;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .sidebar-toggle-btn {
-  margin-left: auto;
   &:hover {
     cursor: pointer;
   }

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'crudApplication';
+  isImageLoaded:boolean;
+  constructor() {
+    // Initially, we assume the image hasn't loaded.
+    this.isImageLoaded = false; // Initially set to false
+  }
+
 }
