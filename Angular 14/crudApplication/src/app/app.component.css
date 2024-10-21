@@ -1,0 +1,28 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.content {
+  padding: 20px;
+}
+
+.active {
+  background-color: #e0e0e0; /* Highlight active link */
+}
+
+.brandName {
+  text-decoration: none;
+  color: rgb(109, 29, 29);
+  font-weight: bolder;
+}
+
+.sidebar-icon {
+  margin: 0 8px 0 3px;
+}
+
+.sidebar-toggle-btn {
+  margin-left: auto;
+  &:hover {
+    cursor: pointer;
+  }
+}

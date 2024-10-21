@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+    <!--left sidebar with menu -->
+    <mat-sidenav #sidenav mode="side" opened>
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-list>
+            <a mat-list-item routerLink="/home" routerLinkActive="active"> <mat-icon
+                    class="sidebar-icon">home</mat-icon> Home </a>
+            <a mat-list-item routerLink="/about" routerLinkActive="active"> <mat-icon
+                    class="sidebar-icon">info</mat-icon> About </a>
+            <a mat-list-item routerLink="/contact" routerLinkActive="active"> <mat-icon
+                    class="sidebar-icon">contact_mail</mat-icon> Contact</a>
+            <a mat-list-item routerLink="/login" routerLinkActive="active"> <mat-icon
+                    class="sidebar-icon">login</mat-icon> Login </a>
+            <a mat-list-item routerLink="/register" routerLinkActive="active"> <mat-icon
+                    class="sidebar-icon">logout</mat-icon> Register</a>
+        </mat-list>
+    </mat-sidenav>
+
+
+    <!-- right sidebar area -->
+    <mat-sidenav-content>
+        <mat-toolbar color="" style="background-color: rgba(191, 205, 218, 0.237);">
+            <a routerLink="/home" class="brandName"><span>My Application</span></a>
+            <!-- sidebar toggle btn -->
+            <button mat-icon-button (click)="sidenav.toggle()" class="sidebar-toggle-btn">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <!-- right side body container for routes -->
+        <div class="content">
+            <router-outlet></router-outlet> <!-- Where routed components will be displayed -->
+        </div>
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
