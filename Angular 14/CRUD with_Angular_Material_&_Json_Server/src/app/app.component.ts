@@ -34,7 +34,8 @@ export interface ProductData {
 export class AppComponent implements OnInit {
   title = 'CRUD APPLICATION WITH SCSS AND MATERIAL';
   
-  displayedColumns: string[] = ['productName', 'category', 'date', 'freshness', 'price', 'comment' ];
+  // columns:
+  displayedColumns: string[] = ['productName', 'category', 'date', 'freshness', 'price', 'comment', 'actions' ];
   // without api response type interface
   dataSource!: MatTableDataSource<any>;
   // with api response type interface
@@ -89,10 +90,47 @@ export class AppComponent implements OnInit {
 
 
   // life cycle method ,ensuring data is availbale for view to facilitate voewChild decorator:
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
+
+
+
+
+
+
+
+// edit product:
+editProduct(row:any){
+  //open model on button clik: get row data:and  patch to fields:
+  this.dialog.open((DialogComponent),{
+    //passing model row data as storing in row an dto pass the lcicked row value to modal ...
+    minWidth: '40vw',
+    minHeight: '40vh',
+    data:row
+  })
+}
+
+
+
+
+
+// delete product:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
