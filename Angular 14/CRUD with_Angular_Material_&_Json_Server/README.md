@@ -1,5 +1,11 @@
 # Client
 
+### created a fake json server at local system supporting your nodejs14(npm install -g json-server@0.16.3)
+start that json server (json-server --watch db.json)
+
+---a db.json file is created and a fake backend json server starts on port 3000
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
 
 ## Development server
