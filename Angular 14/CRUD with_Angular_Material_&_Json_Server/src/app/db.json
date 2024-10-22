@@ -1,6 +1,23 @@
 {
   "productList": [
-    
+    {
+      "productName": "Samsung S23",
+      "category": "Electronics",
+      "freshness": "Second Hand",
+      "price": 15000,
+      "comment": "In working condition.",
+      "date": "2021-07-12T18:30:00.000Z",
+      "id": 1
+    },
+    {
+      "productName": "Toma",
+      "category": "Vegetables",
+      "freshness": "Brand New",
+      "price": 70,
+      "comment": "price Per kg.",
+      "date": "2024-10-21T18:30:00.000Z",
+      "id": 2
+    }
   ],
   "comments": [
     {
