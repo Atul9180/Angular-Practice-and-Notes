@@ -22,6 +22,7 @@ import {MatTableModule} from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatButtonModule, MatDialogModule, MatFormFieldModule,
     MatSelectModule, MatDatepickerModule, MatNativeDateModule,
     MatRadioModule, MatButtonModule, 
-    MatPaginatorModule, MatSortModule
+    MatPaginatorModule, MatSortModule,MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

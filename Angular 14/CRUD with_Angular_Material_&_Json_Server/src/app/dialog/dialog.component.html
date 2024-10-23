@@ -8,11 +8,16 @@
         <mat-form-field appearance="outline">
             <mat-label>Product Name</mat-label>
             <input formControlName="productName" matInput placeholder="Enter Product Name">
-            <!-- <mat-icon matSuffix style="color:green;">check</mat-icon> -->
-            <!-- <mat-icon matSuffix style="color:red;">close</mat-icon> -->
+            <mat-error *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched">
+                <ng-container *ngIf="productForm.get('productName')?.errors?.['required']">Product Name is
+                    required.</ng-container>
+                <ng-container *ngIf="productForm.get('productName')?.errors?.['minlength']">Minimum length is
+                    3.</ng-container>
+                <ng-container *ngIf="productForm.get('productName')?.errors?.['maxlength']">Maximum length is
+                    50.</ng-container>
+            </mat-error>
         </mat-form-field>
-        
-        
+
         <!-- select -->
         <mat-form-field appearance="outline">
             <mat-label>Product Category</mat-label>
@@ -21,18 +26,22 @@
                 <mat-option value="Vegetables">Vegetables</mat-option>
                 <mat-option value="Electronics">Electronics</mat-option>
             </mat-select>
+            <mat-error *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
+                Category is required.
+            </mat-error>
         </mat-form-field>
-        
-        
+
         <!-- Date -->
         <mat-form-field appearance="fill">
             <mat-label>Choose a date</mat-label>
             <input formControlName="date" matInput [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="productForm.get('date')?.invalid && productForm.get('date')?.touched">
+                Date is required.
+            </mat-error>
         </mat-form-field>
-        
-        
+
         <!-- drop Down -->
         <label for="">
             <h1>Product Freshness:</h1>
@@ -41,29 +50,36 @@
             <mat-radio-button class="example-radio-button" *ngFor="let fresh of freshnessList"
                 [value]="fresh">{{fresh}}</mat-radio-button>
         </mat-radio-group>
-        
-        
+        <mat-error *ngIf="productForm.get('freshness')?.invalid && productForm.get('freshness')?.touched">
+            Freshness is required.
+        </mat-error>
+
         <!-- input -->
         <mat-form-field appearance="outline">
             <mat-label>Price</mat-label>
             <input formControlName="price" matInput type="number" placeholder="Enter Price">
-            <!-- <mat-icon matSuffix style="color:green;">check</mat-icon> -->
-            <!-- <mat-icon matSuffix style="color:red;">close</mat-icon> -->
+            <mat-error *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+                <ng-container *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</ng-container>
+                <ng-container *ngIf="productForm.get('price')?.errors?.['min']">Price must be greater than 0.</ng-container>
+            </mat-error>
         </mat-form-field>
-        
-        
+
         <!-- input -->
         <mat-form-field appearance="outline">
             <mat-label>Comment</mat-label>
             <textarea formControlName="comment" matInput placeholder="Enter your Comment.."></textarea>
-            <!-- <mat-icon matSuffix style="color:green;">check</mat-icon> -->
-            <!-- <mat-icon matSuffix style="color:red;">close</mat-icon> -->
+            <mat-error *ngIf="productForm.get('comment')?.invalid && productForm.get('comment')?.touched">
+                <ng-container *ngIf="productForm.get('comment')?.errors?.['required']">Comment is required.</ng-container>
+                <ng-container *ngIf="productForm.get('comment')?.errors?.['maxlength']">Maximum length is
+                    200.</ng-container>
+            </mat-error>
         </mat-form-field>
-    </form>    
+    </form>
 </div>
 
 <!-- dialog action -->
- <div mat-dialog-action [align]="'end'">
+<div mat-dialog-action [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-    <button mat-raised-button color="primary" (click)="addProduct()" style="margin-left:8px">Save</button>
- </div>
+    <button mat-raised-button color="primary" (click)="addProduct()" style="margin-left:8px"
+        [disabled]="productForm.invalid">{{actionBtn}}</button>
+</div>

@@ -65,7 +65,11 @@ export class AppComponent implements OnInit {
     this.dialog.open(DialogComponent, {
       minWidth: '40vw',
       minHeight: '40vh'
-    });
+    }).afterClosed().subscribe(val=>{    //subscribe on mode close in case 'save' => new product add getallproducts.
+      if(val=='save'){
+        this.getAllProducts();
+      }
+    })
   }
 
 
@@ -75,7 +79,6 @@ export class AppComponent implements OnInit {
     this.apiservice.getProduct()
     .subscribe({
       next:(res)=>{
-          console.log("fetched products from api: ",res)
           this.dataSource = new MatTableDataSource(res);    //store whatever response get it inside table data source
           this.dataSource.paginator = this.paginator; //initialize paginator viewchild..
           this.dataSource.sort = this.sort; // initialize sort from viewchild...
@@ -109,33 +112,30 @@ editProduct(row:any){
     minWidth: '40vw',
     minHeight: '40vh',
     data:row
+  }).afterClosed().subscribe(val=>{    //subscribe on mode close in case 'update' => edited product then getall products again.
+      if(val=='update'){
+        this.getAllProducts();
+      }
+    })
+}
+
+
+// delete product:
+deleteProduct(id:number){
+  this.apiservice.deleteProduct(id)
+  .subscribe({
+    next:(res)=>{
+      alert("Product deleted Successfully");
+      this.getAllProducts();
+    },
+    error:()=>{
+      alert("Error while deleting the record")
+    }
   })
 }
 
 
-
-
-
-// delete product:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // filtering method using matpaginatorModule:
+// filtering method using matpaginatorModule:
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
